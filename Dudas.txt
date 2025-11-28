@@ -1,0 +1,2 @@
+- Como funciona exactamente el venv
+- Que es el archivo .spec y la carpeta build
