@@ -3,3 +3,4 @@
 - Si yo he creado el venv en el ordenador del trabajo tendria que hacer uno nuevo en mi portatil?
 - Como hacer los workflows (sin usar copilot)
 - Comprobar reglas
+- Actualizar log cada vez que se abre o guardar?
