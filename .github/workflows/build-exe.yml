@@ -2,41 +2,29 @@ name: Build EXE
 
 on:
   push:
-    branches: ["main"]
+    branches: [ master ]
 
 jobs:
-  build-windows:
-    name: Build Windows EXE
+  build:
+    name: Build exe (Windows)
     runs-on: windows-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
+      - uses: actions/checkout@v4
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
       - name: Install dependencies
         shell: powershell
         run: |
           python -m pip install --upgrade pip
-          if (Test-Path requirements.txt) {
-            pip install -r requirements.txt
-          } else {
-            pip install pyinstaller
-          }
-
-      - name: Build exe with PyInstaller
+          if (Test-Path requirements.txt) { pip install -r requirements.txt } else { pip install pyinstaller }
+      - name: Build exe
         shell: powershell
         run: |
-          # Limpiar build previo opcionalmente
-          if (Test-Path dist) { Remove-Item -Recurse -Force dist build *.spec }
-          # Ejecutar PyInstaller
-          python -m PyInstaller --onefile --windowed --name Calculadora app.py
-
+          pyinstaller --onefile --windowed --name Calculadora app.py
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Calculadora-windows
+          name: Calculadora-exe
           path: dist\*.exe
