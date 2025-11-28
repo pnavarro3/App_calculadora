@@ -4,3 +4,4 @@
 - Como hacer los workflows (sin usar copilot)
 - Comprobar reglas
 - Actualizar log cada vez que se abre o guardar?
+- Tanta cosa en requirements

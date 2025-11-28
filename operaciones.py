@@ -1,8 +1,20 @@
 import logging
+import os
+import sys
 
-# Configurar logging para registrar operaciones en `log.txt`
+# Determinar ruta segura para el log:
+# - Si la aplicación está congelada por PyInstaller, usar la carpeta del ejecutable.
+# - En desarrollo, usar la carpeta del archivo fuente.
+if getattr(sys, 'frozen', False):
+	base_dir = os.path.dirname(sys.executable)
+else:
+	base_dir = os.path.dirname(os.path.abspath(__file__))
+
+log_path = os.path.join(base_dir, 'log.txt')
+
+# Configurar logging para registrar operaciones en `log.txt` dentro de la carpeta de la app
 logging.basicConfig(
-	filename='log.txt',
+	filename=log_path,
 	level=logging.INFO,
 	format='%(asctime)s %(levelname)s: %(message)s',
 	datefmt='%Y-%m-%d %H:%M:%S'
