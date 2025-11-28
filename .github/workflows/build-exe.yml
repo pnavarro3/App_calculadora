@@ -22,7 +22,7 @@ jobs:
       - name: Build exe
         shell: powershell
         run: |
-          pyinstaller --onefile --windowed --name Calculadora app.py
+          pyinstaller --onefile --windowed --name Calculadora --icon=icon.ico app.py
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
